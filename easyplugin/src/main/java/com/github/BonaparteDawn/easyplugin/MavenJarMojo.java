@@ -14,7 +14,6 @@ import java.util.*;
  * the plug-in that it can install the external Jar package to local maven repository
  *
  * @author BonaparteDawn
- * @date 2020-12-30 14:49
  */
 @Mojo(name="mavenJar",defaultPhase= LifecyclePhase.NONE)
 public class MavenJarMojo extends AbstractMojo {

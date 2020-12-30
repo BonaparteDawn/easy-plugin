@@ -15,7 +15,7 @@
             <plugin>
                 <groupId>com.github.BonaparteDawn</groupId>
                 <artifactId>easy-plugin</artifactId>
-                <version>1.0.0-SNAPSHOT</version>
+                <version>1.0.0-RELEASE</version>
                 <configuration>
                     <dependencies>
                         <dependency>

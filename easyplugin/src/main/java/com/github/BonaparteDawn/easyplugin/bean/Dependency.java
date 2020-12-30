@@ -4,7 +4,6 @@ package com.github.BonaparteDawn.easyplugin.bean;
 /**
  * maven dependency bean
  * @author BonaparteDawn
- * @date 2020-12-30 14:49
  */
 public class Dependency {
     private String scope;
