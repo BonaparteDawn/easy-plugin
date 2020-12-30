@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.github.BonaparteDawn</groupId>
+    <artifactId>test-mavenJar</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <name>test-mavenJar ${project.version}</name>
+    <packaging>pom</packaging>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.github.BonaparteDawn</groupId>
+                <artifactId>easy-plugin</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
+                <configuration>
+                    <dependencies>
+                        <dependency>
+                            <groupId>com.gbase.jdbc</groupId>
+                            <artifactId>gbase-connector-java-driver</artifactId>
+                            <version>8.3.81.53-build52.8</version>
+                            <scope>system</scope>
+                            <systemPath>${project.basedir}/libs/gbase-connector-java-8.3.81.53-build52.8-bin.jar</systemPath>
+                        </dependency>
+                        <dependency>
+                            <groupId>com.oracle</groupId>
+                            <artifactId>ojdbc</artifactId>
+                            <version>12c</version>
+                            <scope>system</scope>
+                            <systemPath>${project.basedir}/libs/ojdbc-12c.jar</systemPath>
+                        </dependency>
+                    </dependencies>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>mavenJar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
