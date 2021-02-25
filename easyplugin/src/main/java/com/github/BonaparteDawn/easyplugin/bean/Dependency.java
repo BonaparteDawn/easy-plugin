@@ -1,6 +1,9 @@
 package com.github.BonaparteDawn.easyplugin.bean;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * maven dependency bean
  * @author BonaparteDawn
@@ -11,6 +14,9 @@ public class Dependency {
     private String artifactId;
     private String version;
     private String systemPath;
+    private String newVersion;
+    private List<String> cleans = new ArrayList<>();
+
 
     public String getGroupId() {
         return groupId;
@@ -50,6 +56,22 @@ public class Dependency {
 
     public void setScope(String scope) {
         this.scope = scope;
+    }
+
+    public String getNewVersion() {
+        return newVersion;
+    }
+
+    public void setNewVersion(String newVersion) {
+        this.newVersion = newVersion;
+    }
+
+    public List<String> getCleans() {
+        return cleans;
+    }
+
+    public void setCleans(List<String> cleans) {
+        this.cleans = cleans;
     }
 
     @Override
