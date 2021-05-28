@@ -51,15 +51,9 @@ public class JarMojoCommandBuilder {
         if (jarMojoContext.getEncode()!=null){
             arg.put("file.encoding",jarMojoContext.getEncode());
         }
-        if (jarMojoContext.getMavenRepoLocal()!=null){
-            arg.put("maven.repo.local",jarMojoContext.getMavenRepoLocal());
-        }else{
-            if (jarMojoContext.getSettings()!=null){
-                Settings settings = jarMojoContext.getSettings();
-                if (settings.getLocalRepository()!=null){
-                    arg.put("maven.repo.local",settings.getLocalRepository());
-                }
-            }
+        String mavenRepoLocal = mavenRepoLocal(jarMojoContext);
+        if (mavenRepoLocal!=null){
+            arg.put("maven.repo.local",mavenRepoLocal);
         }
         arg.put("groupId",dependency.getGroupId());
         arg.put("artifactId",dependency.getArtifactId());
@@ -88,8 +82,9 @@ public class JarMojoCommandBuilder {
                 sourceJar = new File(dependency.getSystemPath());
             }else{
                 StringJoiner pathJoiner = new StringJoiner(File.separator);
-                if (jarMojoContext.getMavenRepoLocal()!=null){
-                    pathJoiner.add(jarMojoContext.getMavenRepoLocal());
+                String mavenRepoLocal = mavenRepoLocal(jarMojoContext);
+                if (mavenRepoLocal!=null){
+                    pathJoiner.add(mavenRepoLocal);
                 }
                 if (dependency.getGroupId()!=null){
                     String[] sps = dependency.getGroupId().split("\\.");
@@ -195,5 +190,14 @@ public class JarMojoCommandBuilder {
             driverJoiner.add("mvn");
         }
         return driverJoiner.toString();
+    }
+
+    private String mavenRepoLocal(JarMojoContext tmp){
+        String res = tmp.getMavenRepoLocal();
+        if (res==null && tmp.getSettings()!=null){
+            Settings settings = tmp.getSettings();
+            res = settings.getLocalRepository();
+        }
+        return res;
     }
 }
