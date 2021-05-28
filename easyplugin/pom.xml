@@ -6,7 +6,7 @@
 
     <groupId>com.github.BonaparteDawn</groupId>
     <artifactId>easy-plugin</artifactId>
-    <version>1.0.1-RELEASE</version>
+    <version>1.0.2-RELEASE</version>
     <name>easy-plugin ${project.version}</name>
     <packaging>maven-plugin</packaging>
 
