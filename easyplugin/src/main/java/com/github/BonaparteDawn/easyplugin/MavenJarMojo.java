@@ -3,6 +3,7 @@ package com.github.BonaparteDawn.easyplugin;
 import com.github.BonaparteDawn.easyplugin.bean.Dependency;
 import com.github.BonaparteDawn.easyplugin.context.JarMojoContext;
 import com.github.BonaparteDawn.easyplugin.util.ResourceUtil;
+import org.apache.maven.settings.Settings;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugin.logging.Log;
@@ -36,6 +37,14 @@ public class MavenJarMojo extends AbstractMojo {
     @Parameter(property = "maven.repo.local")
     private String mavenRepoLocal;
 
+
+    /**
+     * The system settings for Maven. This is the instance resulting from
+     * merging global and user-level settings files.
+     */
+    @Parameter( defaultValue = "${settings}", readonly = true, required = true )
+    private Settings settings;
+
     /**
      * file encoding type
      */
@@ -56,6 +65,7 @@ public class MavenJarMojo extends AbstractMojo {
                     JarMojoContext jarMojoContext = new JarMojoContext(dependency);
                     jarMojoContext.setMavenHome(mavenHome);
                     jarMojoContext.setMavenRepoLocal(mavenRepoLocal);
+                    jarMojoContext.setSettings(settings);
                     jarMojoContext.setEncode(encode);
                     jarMojoContext.init();
                     jarMojoContext.routeEngine().run();

@@ -2,6 +2,7 @@ package com.github.BonaparteDawn.easyplugin.context;
 
 import com.github.BonaparteDawn.easyplugin.bean.Dependency;
 import com.github.BonaparteDawn.easyplugin.engine.JarMojoEngine;
+import org.apache.maven.settings.Settings;
 import java.util.Stack;
 
 /**
@@ -30,6 +31,13 @@ public class JarMojoContext {
      * local maven repository path
      */
     private String mavenRepoLocal;
+
+
+    /**
+     * The system settings for Maven. This is the instance resulting from
+     * merging global and user-level settings files.
+     */
+    private Settings settings;
 
     /**
      * file encoding type
@@ -106,5 +114,13 @@ public class JarMojoContext {
 
     public void setResourceStock(Stack<Object> resourceStock) {
         this.resourceStock = resourceStock;
+    }
+
+    public Settings getSettings() {
+        return settings;
+    }
+
+    public void setSettings(Settings settings) {
+        this.settings = settings;
     }
 }

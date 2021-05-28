@@ -6,6 +6,7 @@ import com.github.BonaparteDawn.easyplugin.context.JarMojoContext;
 import com.github.BonaparteDawn.easyplugin.util.ResourceUtil;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
+import org.apache.maven.settings.Settings;
 import java.io.*;
 import java.util.*;
 import java.util.jar.JarEntry;
@@ -52,6 +53,13 @@ public class JarMojoCommandBuilder {
         }
         if (jarMojoContext.getMavenRepoLocal()!=null){
             arg.put("maven.repo.local",jarMojoContext.getMavenRepoLocal());
+        }else{
+            if (jarMojoContext.getSettings()!=null){
+                Settings settings = jarMojoContext.getSettings();
+                if (settings.getLocalRepository()!=null){
+                    arg.put("maven.repo.local",settings.getLocalRepository());
+                }
+            }
         }
         arg.put("groupId",dependency.getGroupId());
         arg.put("artifactId",dependency.getArtifactId());
